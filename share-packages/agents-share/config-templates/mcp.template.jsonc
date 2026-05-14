@@ -1,0 +1,48 @@
+// 前置条件：
+// 1. 本机已安装 node
+// 2. 本机已存在可执行的 mysql MCP server 目录
+// 3. 将 <mcp-server-root> 替换为真实目录
+// 4. 将 <...> 环境变量占位符替换为本地实际值或由启动器注入
+// 5. 生产连接默认只保留只读能力
+{
+  "mcpServers": {
+    "test-db": {
+      "command": "node",
+      "args": [
+        "<mcp-server-root>/mysql-server/index.js"
+      ],
+      "env": {
+        "MYSQL_HOST": "<TEST_DB_HOST>",
+        "MYSQL_PORT": "<TEST_DB_PORT>",
+        "MYSQL_USER": "<TEST_DB_USER>",
+        "MYSQL_PASSWORD": "<TEST_DB_PASSWORD>",
+        "MYSQL_DATABASE": "<TEST_DB_DATABASE>"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "mysql_query",
+        "mysql_describe_table"
+      ]
+    },
+    "prod-db": {
+      // 脱敏示例名；项目内真实 server 名称以本地 .agents/runtime/mcp/ 真源为准。
+      "command": "node",
+      "args": [
+        "<mcp-server-root>/mysql-server/index.js"
+      ],
+      "env": {
+        "MYSQL_HOST": "<PROD_DB_HOST>",
+        "MYSQL_PORT": "<PROD_DB_PORT>",
+        "MYSQL_USER": "<PROD_DB_USER>",
+        "MYSQL_PASSWORD": "<PROD_DB_PASSWORD>",
+        "MYSQL_DATABASE": "<PROD_DB_DATABASE>"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "mysql_query",
+        "mysql_describe_table",
+        "mysql_show_tables"
+      ]
+    }
+  }
+}
