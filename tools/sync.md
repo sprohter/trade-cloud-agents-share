@@ -9,12 +9,29 @@
 | 脚本 | 作用 |
 |------|------|
 | `pull-epean-skills.ps1` | 从 epean upstream 拉取 skill 更新 |
+| `sync-github-agent-repos.ps1` | 每日双仓统一同步入口：先同步个人 Private 备份库，再同步脱敏架构分享仓库 |
 | `sync-github-safe-mirror.ps1` | 将 `.agents/` 可版本化子集以安全线性流程同步到 GitHub Private 镜像 |
+| `sync-github-share-architecture.ps1` | 将 `.agents/` 白名单架构/治理/模板内容同步到脱敏架构分享仓库 |
 | `sync-agents-to-onedrive.ps1` | 将 `.agents/` 框架资产备份到 OneDrive；默认排除凭证、运行缓存和依赖目录 |
 | `sync-mcp-to-cursor.ps1` | 将 `.agents/runtime/mcp/<agent>.mcp.json` 同步到 Cursor |
 | `sync-kiro-to-onedrive.ps1` | 已废弃，立即报错，防止继续把 `.kiro` 当真源 |
 
 **维护状态**：活跃
+
+## GitHub 双仓每日同步
+
+统一入口：
+
+```powershell
+.\.agents\scripts\sync\sync-github-agent-repos.ps1 -SkipAnonymousPrivacyCheck
+```
+
+默认顺序：
+
+1. `trade-cloud-agents`：个人 Private 备份库，沿用安全镜像边界；日常增量，周日全量。
+2. `trade-cloud-agents-share`：脱敏架构分享库，只导出白名单内容并阻断敏感命中。
+
+自动化 `daily-agents-safe-mirror-sync` 每天 05:00 调用该统一入口。脚本不写入 token，不把 token 拼进 remote URL；若遇到疑似敏感内容、推送冲突、远端不可达或需要强推 / 删历史 / 轮换凭证，会停止并报告。
 
 ## OneDrive 备份用法
 
@@ -38,8 +55,11 @@
 - `runtime/mcp/claude.mcp.json`
 - `runtime/mcp/mcp.local.json`
 - `runtime/state/`
+- `runtime/tmp/`
 - `runtime/node-deps/`
+- `**/__pycache__/`、`*.pyc`、`*.pyo`
 - `upstream/epean-skills/`
+- `upstream/`
 - `_cleanup/`
 
 如确实要把私有配置也备份到 OneDrive，需显式加 `-IncludeSecrets`。不建议用于团队共享目录。
@@ -110,7 +130,7 @@
 
 分享仓库只从 `.agents/` 真源白名单导出，不从个人备份库复制历史。
 
-计划脚本：
+同步脚本：
 
 ```powershell
 .\.agents\scripts\sync\sync-github-share-architecture.ps1

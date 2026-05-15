@@ -91,7 +91,7 @@
 | 平台接口问题、平台返回报错、平台拒绝、上传单号失败、Amazon 报错 | `knowledge/testing/platform-api-issue-validation-runbook.md` |
 | 业务反馈回复、业务回复、群里回复、回复话术、沟通话术、对外同步口径、钉钉消息文案、群消息文案、机器人消息文案 | `knowledge/testing/business-feedback-response-guide.md` |
 | 业务口径、字段语义、平台规则 | `knowledge/business/`（目录入口） |
-| 开发习惯、开发规则、开发收尾、临时产物、临时脚本、临时 worktree、临时分支、提交现场清理、默认代想、开发卫生 | `knowledge/development/temporary-artifact-hygiene.md` |
+| 开发习惯、开发规则、开发收尾、临时产物、临时脚本、后台脚本、计划任务、开机启动、watchdog、bridge/server、常驻脚本、定时同步脚本、自动化脚本、无窗口、隐藏窗口、黑框、弹框、跨平台脚本、临时 worktree、临时分支、提交现场清理、默认代想、开发卫生 | `knowledge/development/temporary-artifact-hygiene.md` + `skills/development/cross-platform-development.md` |
 | 本地环境、工具链、MCP 配置 | `knowledge/infrastructure/`（目录入口） |
 | Seafile 文档查找 | `knowledge/infrastructure/seafile-local-lookup-guide.md` |
 | 密钥与凭证治理 | `knowledge/infrastructure/secrets-governance-plan.md` |

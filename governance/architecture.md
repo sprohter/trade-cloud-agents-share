@@ -452,15 +452,16 @@ adapters/
 | `runtime/mcp/mcp.template.json`、`runtime/README.md`、`runtime/local-secrets/*.example` | 允许导出 | 只导出模板和说明 |
 | `runtime/local-secrets/*.env`、`runtime/local-secrets/*.toml` | 禁止导出 | 本机凭证真源，只能留在本机 |
 | `runtime/mcp/codex.mcp.json`、`runtime/mcp/claude.mcp.json`、真实 `.mcp.json` 镜像 | 禁止导出 | 可能包含本机路径、服务端点或私有参数 |
-| `runtime/state/`、`collab/sessions/`、`tmp/`、`outputs/`、`reports/` | 禁止导出 | 本地运行态、缓存和任务输出 |
+| `runtime/state/`、`runtime/tmp/`、`collab/sessions/`、`tmp/`、`outputs/`、`reports/` | 禁止导出 | 本地运行态、缓存和任务输出 |
 | `archive/`、`case-studies/` | 默认禁止导出 | 可能含历史现场、截图、业务数据；确需共享时必须单独脱敏评审 |
-| `scripts/**/node_modules/`、`runtime/mcp-servers/**/node_modules/` | 禁止导出 | 可重建依赖，不进入框架镜像 |
+| `scripts/**/node_modules/`、`runtime/mcp-servers/**/node_modules/`、`**/__pycache__/`、`*.pyc`、`*.pyo` | 禁止导出 | 可重建依赖和运行缓存，不进入框架镜像 |
 
 补充口径：
 
 - 即使文件位于 `skills/`、`knowledge/`、`scripts/`、`upstream*` 等默认允许导出目录，只要包含真实密码、token、私钥、cookie、临时 worktree 或其他本机运行态痕迹，仍必须按文件级或子目录级排除，或先修正本地真源再导出。
 - `scripts/runtime/`、站点登录探针、一次性复测脚本、带固定测试账号/密码的浏览器脚本，默认按“运行态/临时验证资产”处理，不进入 GitHub 安全镜像；只有完成脱敏、确认具备长期复用价值后，才允许单独纳入。
 - `upstream/`、`upstream-skills/` 下的外部仓库、生成产物或其测试样例，不因“位于允许导出目录”就自动进入安全镜像；若无明确 bootstrap 价值或含 token / webhook / callback 示例，默认按外部依赖或高噪音资产排除。
+- 个人备份库默认不导出整个 `upstream/` 外部依赖区；需要共享贡献规则时，应维护脱敏后的 `knowledge/development/` 镜像文档。
 - `daily-recommend/` 下的 digest、html 快照、log、translation cache 等日常运行产物默认不进入 GitHub 安全镜像；仅保留脚本、说明和可复用静态模板。
 
 ### 标准提交方案

@@ -19,8 +19,9 @@
 
 | 位置 | 状态 | 说明 |
 |------|------|------|
-| `https://github.com/sprohter/trade-cloud-agents` | ✅ 个人私有备份镜像 | `.agents/` 可版本化内容的 GitHub Private 脱敏导出，用于个人备份和 Windows / macOS 新设备 bootstrap；仅本人可见，不向同事或外部朋友分享；不是真实运行态真源，不保存 `runtime/local-secrets/`、真实 MCP 配置、`runtime/state/`、`collab/sessions/`、`archive/`、`case-studies/` |
-| Codex automation `daily-agents-safe-mirror-sync` | ✅ 活跃 | 每天凌晨 5:00 自动执行 GitHub 私有安全镜像同步；默认日常增量、周日全量；配置文件在 `<user-home>/.codex/automations/daily-agents-safe-mirror-sync/automation.toml`，仅登记任务身份和边界，不保存凭证明文 |
+| `https://github.com/sprohter/trade-cloud-agents` | ✅ 个人私有备份镜像 | `.agents/` 可版本化内容的 GitHub Private 脱敏导出，用于个人备份和 Windows / macOS 新设备 bootstrap；仅本人可见，不向同事或外部朋友分享；不是真实运行态真源，不保存 `runtime/local-secrets/`、真实 MCP 配置、`runtime/state/`、`runtime/tmp/`、`collab/sessions/`、`archive/`、`case-studies/`、`upstream/`、`claude-code/lessons.md` |
+| Codex automation `daily-agents-safe-mirror-sync` | ✅ 活跃 | 每天凌晨 5:00 自动执行 GitHub 双仓同步：先同步个人 Private 备份镜像，再同步脱敏架构分享仓库；备份库默认日常增量、周日全量；配置文件在 `<user-home>/.codex/automations/daily-agents-safe-mirror-sync/automation.toml`，仅登记任务身份和边界，不保存凭证明文 |
+| `.agents/scripts/sync/sync-github-agent-repos.ps1` | ✅ 活跃 | GitHub 双仓统一入口：编排 `sync-github-safe-mirror.ps1` 和 `sync-github-share-architecture.ps1`，写入双仓运行摘要；不改变各自安全边界 |
 | `.agents/scripts/sync/sync-github-safe-mirror.ps1` | ✅ 活跃 | GitHub Private 安全镜像一键同步脚本：默认增量比较 changed paths、默认每周日自动全量、保留 7 天兜底、支持 `-ForceFull`、Windows 默认 `http.sslBackend=openssl`、fast-forward push、远端校验；默认运行态目录在 `<user-home>/.codex/automations/daily-agents-safe-mirror-sync/` |
 
 ---
@@ -29,8 +30,8 @@
 
 | 位置 | 状态 | 说明 |
 |------|------|------|
-| `https://github.com/sprohter/trade-cloud-agents-share` | 🧭 计划中 | 面向同事和外部朋友的纯架构分享仓库；只保存白名单导出的架构设计、治理思想、工具使用方式、模板和脱敏脚本骨架；不从个人备份库复制历史 |
-| `.agents/scripts/sync/sync-github-share-architecture.ps1` | 🧭 待实现 | 计划中的分享版导出脚本：白名单复制、阻断扫描、fresh clone、overlay、PR/fast-forward 推送校验 |
+| `https://github.com/sprohter/trade-cloud-agents-share` | ✅ 活跃 | 面向同事和外部朋友的纯架构分享仓库；只保存白名单导出的架构设计、治理思想、工具使用方式、模板和脱敏脚本骨架；不从个人备份库复制历史 |
+| `.agents/scripts/sync/sync-github-share-architecture.ps1` | ✅ 活跃 | 分享版导出脚本：白名单复制、阻断扫描、fresh clone、overlay、fast-forward 推送校验；默认运行态目录在 `<user-home>/.codex/automations/agents-architecture-share-sync/` |
 
 治理口径：
 
