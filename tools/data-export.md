@@ -89,6 +89,13 @@ node .agents/scripts/data-export/export_shopee_invalid_watermarks.mjs
 node .agents/scripts/data-export/export_amazon_listing_success_rate.mjs
 ```
 
+Windows 自动化强制静默入口：
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .agents/scripts/data-export/install_amazon_listing_success_rate_task.ps1
+```
+
+安装后由计划任务 `AmazonListingSuccessRateWeekly` 每周五 09:00 执行，任务动作必须保持为 `wscript.exe` 调用 `.agents/scripts/data-export/run_amazon_listing_success_rate_hidden.vbs`。该入口隐藏运行，不弹 PowerShell / Windows Terminal / 黑框；日志写入 `outputs/amazon_listing_success_rate/logs/`，最新状态写入 `outputs/amazon_listing_success_rate/status/latest.json`。Codex automation 只读状态并汇报，不直接前台执行 Node 导出脚本。
+
 可选环境变量：
 - `REPORT_START_TIME`：统计开始时间，默认生产库当前日期往前 7 天 00:00:00。
 - `REPORT_SNAPSHOT_TIME`：统计截止时间，默认生产库昨天 `23:59:59`，避免混入今天未完整结束的数据。
