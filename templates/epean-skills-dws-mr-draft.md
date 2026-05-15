@@ -11,7 +11,7 @@
 
 创建地址：
 
-- <https://gitlab.epean.cn/root/epean-skills/-/merge_requests/new?merge_request%5Bsource_branch%5D=feature%2Fchunxing-fu%2Fdws-skills>
+- <https://<internal-domain>/root/epean-skills/-/merge_requests/new?merge_request%5Bsource_branch%5D=feature%2Fchunxing-fu%2Fdws-skills>
 
 ---
 
@@ -35,7 +35,7 @@
 - `python -m py_compile skills/dws-dingtalk-docs/scripts/dws_json_runner.py skills/dws-todo-handoff/scripts/dws_todo_handoff.py`
 - `python skills/dws-dingtalk-docs/scripts/dws_json_runner.py --help`
 - `python skills/dws-todo-handoff/scripts/dws_todo_handoff.py --help`
-- `python skills/dws-todo-handoff/scripts/dws_todo_handoff.py --title "可用性验证" --recipient-keyword "付春幸" --dry-run --json`
+- `python skills/dws-todo-handoff/scripts/dws_todo_handoff.py --title "可用性验证" --recipient-keyword "<maintainer>" --dry-run --json`
 - `python skills/dws-todo-handoff/scripts/dws_todo_handoff.py --title "可用性验证" --recipient-user-id "noop-user" --dry-run --json`
 - 结果：帮助信息正常；关键词路径 dry-run 成功；非法 userId 返回清晰业务错误，无 traceback
 

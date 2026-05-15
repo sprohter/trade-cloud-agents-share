@@ -1,0 +1,72 @@
+# Skill capsule template
+#
+# Purpose:
+# - Provide a lightweight routing summary for an existing skill.
+# - Help an agent decide whether to load the full SKILL.md.
+# - Keep routing metadata machine-readable without replacing the skill body.
+#
+# Rules:
+# - Do not put credentials, tokens, cookies, URLs with secrets, or production data here.
+# - Keep this file small. Detailed steps stay in SKILL.md, knowledge/, tools/, or runbooks.
+# - A capsule is advisory until a route/eval process explicitly consumes it.
+
+schema: agents.skill-capsule.v1
+status: draft
+
+skill:
+  id: "<skill-id>"
+  display_name: "<human-readable-name>"
+  source_path: "skills/<skill-id>/SKILL.md"
+  owner_layer: "skills"
+
+routing:
+  summary: "<one sentence describing when to use this skill>"
+  triggers:
+    - "<keyword-or-intent>"
+  negative_triggers:
+    - "<similar request that should not use this skill>"
+  facets:
+    task_type: "<testing|diagnosis|development|ops|documentation|other>"
+    domain: "<business|infrastructure|testing|development|governance|other>"
+    environment: "<test|staging|uat|production|local|unknown>"
+  priority: normal
+  conflicts:
+    prefer_over:
+      - "<skill-id>"
+    defer_to:
+      - "<skill-id>"
+
+loading:
+  required_files:
+    - "skills/<skill-id>/SKILL.md"
+  optional_files:
+    - "knowledge/<domain>/<file>.md"
+  stop_if_missing_required_files: true
+
+execution:
+  default_mode: "read-only"
+  required_inputs:
+    - "<required input>"
+  safe_defaults:
+    - "<safe assumption>"
+  confirmation_required_for:
+    - "<write operation, external side effect, production action, or destructive action>"
+
+risk:
+  level: low
+  reasons:
+    - "<why this skill is low/medium/high risk>"
+  production_data: false
+  external_side_effects: false
+
+outputs:
+  expected:
+    - "<summary|report|patch|command-output|artifact>"
+  evidence_required:
+    - "<file path|log line|query result|screenshot|tool output>"
+
+maintenance:
+  owner: "<owner-or-team>"
+  last_reviewed: "YYYY-MM-DD"
+  notes:
+    - "Keep source_path and routing.md references aligned."

@@ -6,10 +6,10 @@
 
 1. `routing.md` 中的活跃路径是否存在
 2. `.agents/codex/adapter.md` 与 `.kiro/steering/core/agent-framework.md` 是否一致
-3. `knowledge/infrastructure/mcp-services.md` 与 `.agents/runtime/mcp/codex.mcp.json` / `.agents/runtime/mcp/claude.mcp.json` 的业务 MySQL MCP 口径是否一致，默认覆盖 `test-db`、`prod-db-epean`、`prod-db-mengxuan`
+3. `knowledge/infrastructure/mcp-services.md` 与 `.agents/runtime/mcp/codex.mcp.json` / `.agents/runtime/mcp/claude.mcp.json` 的业务 MySQL MCP 口径是否一致，默认覆盖 `test-db`、`prod-db-primary`、`prod-db-secondary`
 4. `routing.md` 引用到的 skill 根目录是否都存在 `SKILL.md`
 5. Codex adapter / runtime-configs 是否显式区分 Codex 桌面与 Codex CLI，根 `AGENTS.md` 是否仍能让 CLI 在项目 cwd 进入 `.agents/` 真源
-6. Codex CLI 用户级 `~/.codex/config.toml` 中的 `test-db` / `prod-db-epean` / `prod-db-mengxuan` 是否仍指向 `.agents/runtime/mcp-servers/mysql-server/index.js`，而不是旧 `.kiro/settings/mcp-servers`
+6. Codex CLI 用户级 `~/.codex/config.toml` 中的 `test-db` / `prod-db-primary` / `prod-db-secondary` 是否仍指向 `.agents/runtime/mcp-servers/mysql-server/index.js`，而不是旧 `.kiro/settings/mcp-servers`
 7. 活跃 skill / knowledge / tools / runtime / case-studies 文档中是否还残留旧 `ops/`、`.kiro/templates/`、`.kiro/docs/`、非薄指针 `.kiro/steering/`、`~/.codex/*.toml`、`scripts/agent-tools/dws`、`docs/codex/guides/testing-requirements` 真源口径或死链
 8. 活跃脚本是否仍通过旧 `ops/` 目录解析共享 Node 依赖；当前统一使用 `.agents/runtime/node-deps/`
 9. `.agents/.git` 是否健康，且运行产物、缓存、云同步临时文件等不会进入提交边界

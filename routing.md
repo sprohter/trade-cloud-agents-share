@@ -18,6 +18,7 @@
 | 查数据、统计、成功率、失败率、趋势、报表、数据验证、SQL、表结构、DESCRIBE | `skills/sql-diagnosis/` + `skills/infrastructure/database-operations.md` |
 | 刊登统计、刊登成功率、刊登失败率、待刊登、prod_listing_{platform}、prod_listing_sub_sku_{platform} | `skills/sql-diagnosis/` + `skills/reference/database-naming-guide.md` |
 | 在线商品操作日志、商品操作日志、oper_log、prod_listing_oper_log、调价记录、库存调整记录、上下架记录、同步日志 | `skills/infrastructure/operation-log-guide.md` |
+| SKU迁仓、迁仓、迁移仓库、移仓、雅仓、自建仓、仓库迁移数据检查、标零补货检查、仓库库存标零补货 | `skills/sql-diagnosis/` + `skills/infrastructure/operation-log-guide.md` + `skills/ops-runtime/` |
 | 店铺、sys_sales_plat_acct、销售主管、store_acct、salesperson | `skills/business/modules/system-base.md` |
 | MongoDB、mongodb-find、runtime-ops | `skills/infrastructure/operation-log-guide.md` + `skills/ops-runtime/` |
 | 环境识别、test-db、prod-db、环境切换 | `skills/infrastructure/environment-detection.md` |

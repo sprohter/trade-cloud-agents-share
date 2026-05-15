@@ -79,8 +79,8 @@ migrated_at: 2026-04-20
 
 虽然还没有批量改写所有 `SKILL.md`，但以下两处已经形成统一分级基线：
 
-- `D:\project\trade_cloud\.kiro\settings\skills-activation.json`
-- `D:\project\trade_cloud\.agents\skills\README.md`
+- `<workspace-root>\.kiro\settings\skills-activation.json`
+- `<workspace-root>\.agents\skills\README.md`
 
 这意味着：
 

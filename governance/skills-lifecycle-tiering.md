@@ -89,8 +89,8 @@ migrated_at: 2026-04-20
 
 第一版分级目前落在两处：
 
-- `D:\project\trade_cloud\.kiro\settings\skills-activation.json`
-- `D:\project\trade_cloud\.agents\skills\README.md`
+- `<workspace-root>\.kiro\settings\skills-activation.json`
+- `<workspace-root>\.agents\skills\README.md`
 
 说明：
 

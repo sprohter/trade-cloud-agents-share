@@ -160,5 +160,5 @@ related: [regression-testing-strategy, testing-best-practices]
 ---
 
 **创建时间**: 2026-03-03  
-**维护者**: 付春幸 + Kiro AI  
+**维护者**: <maintainer> + Kiro AI  
 **版本**: 1.0

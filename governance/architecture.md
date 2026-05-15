@@ -61,7 +61,7 @@ Claude Code 的 `MEMORY.md`，以及 Codex 桌面 / Codex CLI 的 `AGENTS.md` + 
 
 对 Codex 桌面与 Codex CLI 进一步约束：
 
-- `C:\Users\epean\.codex\AGENTS.md` 只保留全局偏好，不写项目知识
+- `<user-home>\.codex\AGENTS.md` 只保留全局偏好，不写项目知识
 - 宿主项目 `AGENTS.md` 只保留项目入口约束，不写知识正文
 - `.kiro/steering/core/agent-framework.md` 只保留薄指针，不承担候选池职责
 
@@ -77,10 +77,10 @@ Claude Code 的 `MEMORY.md`，以及 Codex 桌面 / Codex CLI 的 `AGENTS.md` + 
 
 | 场景 | 推荐写法 | 避免写法 |
 |------|----------|----------|
-| `.agents` 内部文档互相引用 | `.agents/skills/...`、`skills/...`、`<agents-root>/skills/...` | `D:\project\trade_cloud\.agents\skills\...` |
+| `.agents` 内部文档互相引用 | `.agents/skills/...`、`skills/...`、`<agents-root>/skills/...` | `<workspace-root>\.agents\skills\...` |
 | 项目根入口 | `<workspace-root>/AGENTS.md`、`<workspace-root>/CLAUDE.md` | 当前机器固定盘符路径 |
-| 用户级配置 | `<user-home>/.codex/config.toml`、`<user-home>/.claude/...` | `C:\Users\epean\...` |
-| 脚本内定位自身依赖 | `$PSScriptRoot`、`__dirname`、`Path(__file__).resolve()`、从 cwd 向上查找 `.agents/` | 写死 `D:/project/trade_cloud` |
+| 用户级配置 | `<user-home>/.codex/config.toml`、`<user-home>/.claude/...` | `<user-home>\...` |
+| 脚本内定位自身依赖 | `$PSScriptRoot`、`__dirname`、`Path(__file__).resolve()`、从 cwd 向上查找 `.agents/` | 写死 `<workspace-root>` |
 | 分享包示例 | `~/team-assets/agents-share/`、`D:\team-assets\agents-share\` 作为示例 | 把示例路径写成唯一标准 |
 
 ### 宿主固定入口边界
@@ -440,7 +440,7 @@ adapters/
 | 本地真源层 | `<workspace-root>/.agents/` | 日常维护和 agent 读取的完整框架 | 只导出可版本化子集 |
 | 本地运行层 | `.agents/runtime/local-secrets/`、`.agents/runtime/state/`、`.agents/collab/sessions/` | 本机凭证、缓存、会话和临时产物 | 否，仅保留 README / example / template |
 | 安全导出层 | `.agents/runtime/state/github-safe-export/` 或同类临时目录 | 生成待提交的脱敏镜像 | 否，属于运行态临时目录 |
-| GitHub 私有镜像 | `https://github.com/sprohter/trade-cloud-agents` | 个人备份、跨设备 bootstrap、远端校验 | 是，仅保存脱敏内容 |
+| GitHub 私有镜像 | `https://github.com/<owner>/<private-agents-backup>` | 个人备份、跨设备 bootstrap、远端校验 | 是，仅保存脱敏内容 |
 
 ### 安全导出边界
 
@@ -501,14 +501,16 @@ adapters/
 
 ## GitHub 公开分享架构仓库方案
 
-本方案用于把 `.agents/` 中可对内外分享的架构设计、治理思想、工具使用方式和模板沉淀为单独仓库。它和个人备份库是两条线，不能混用。
+本方案用于把 `.agents/` 中可分享给同事的架构设计、治理思想、工具使用方式和模板沉淀为单独仓库。它和个人备份库是两条线，不能混用。
+
+分享仓库采用“同事可读安全版”口径：保留对理解框架有价值的项目背景、工具名和流程名，不追求完全匿名；但必须移除或占位替换个人身份、本机路径、内网 IP、真实系统 URL、公司私有域名、服务器日志路径、账号密码 token 和具体业务数据。
 
 ### 双仓库定位
 
 | 仓库 | 可见性 | 职责 | 访问对象 | 写入方式 |
 |------|--------|------|----------|----------|
 | `trade-cloud-agents` | Private | 个人备份与多设备 bootstrap | 仅本人 | 自动同步脚本写入 `main` |
-| `trade-cloud-agents-share` | Public 或 Private-read | 脱敏后的纯架构分享与协作改进 | 同事、外部朋友、协作者 | 白名单导出写入 `main`；外部修改走 branch / PR |
+| `trade-cloud-agents-share` | Public 或 Private-read | 同事可读的安全架构分享与协作改进 | 同事、外部朋友、协作者 | 白名单导出写入 `main`；外部修改走 branch / PR |
 
 原则：
 
@@ -521,8 +523,8 @@ adapters/
 
 | 类型 | 默认处理 | 示例 |
 |------|----------|------|
-| 架构与治理设计 | 允许 | `README.md`、`contract.md`、`routing.md`、`governance/architecture.md` 的脱敏版 |
-| 通用工具说明 | 允许 | `tools/` 中不含内部系统地址的索引卡 |
+| 架构与治理设计 | 允许 | `README.md`、`contract.md`、`routing.md`、`governance/architecture.md` 的安全分享版 |
+| 通用工具说明 | 允许 | `tools/` 中不含真实 URL、IP、账号、服务拓扑的索引卡 |
 | 通用模板 | 允许 | `templates/`、`host-entries/` 中使用占位符的模板 |
 | 分享包 | 允许 | `share-packages/agents-share/` |
 | agent 适配思想 | 允许 | `codex/adapter.md`、`claude-code/adapter.md` 的脱敏版 |
@@ -533,7 +535,8 @@ adapters/
 | 类型 | 禁止原因 |
 |------|----------|
 | 任何账号、密码、token、cookie、私钥、连接串 | 凭证风险 |
-| 内网 IP、真实域名、真实系统 URL、服务拓扑、服务器列表 | 内部拓扑风险 |
+| 个人姓名、个人邮箱、本机用户名路径 | 个人信息风险 |
+| 内网 IP、真实域名、真实系统 URL、服务器日志路径、服务拓扑、服务器列表 | 内部拓扑风险 |
 | `runtime/` 真实配置、MCP server 实现、local-secrets、state、session | 运行态与凭证相邻风险 |
 | `archive/`、`case-studies/`、事故复盘、任务现场、日志片段 | 业务数据和内部过程风险 |
 | `scripts/images/`、`skills/**/images/`、截图、附件、Excel/CSV/PDF/DOCX/PPTX | 页面、业务字段和数据泄露风险 |
@@ -543,11 +546,12 @@ adapters/
 ### 分享同步流程
 
 1. 从 `.agents/` 生成 `share export`，只复制白名单路径。
-2. 对导出树执行阻断扫描：凭证、连接串、内网 IP、真实系统 URL、二进制附件、禁止目录。
-3. fresh clone `trade-cloud-agents-share` 的 `main`。
-4. overlay 导出树，生成单个同步提交。
-5. push 到分享仓库 `main`；如果远端有别人提交，先停下，人工 review / merge，不自动覆盖。
-6. 每次推送后校验远端：关键文件存在、禁止路径缺席、敏感扫描为 0。
+2. 对导出树执行安全分享转换：替换个人身份、本机路径、内网 IP、真实系统 URL、公司私有域名、服务器日志路径和私人备份库 URL。
+3. 对导出树执行阻断扫描：凭证、连接串、内网 IP、真实系统 URL、个人身份、二进制附件、禁止目录。
+4. fresh clone `trade-cloud-agents-share` 的 `main`。
+5. overlay 导出树，生成单个同步提交。
+6. push 到分享仓库 `main`；如果远端有别人提交，先停下，人工 review / merge，不自动覆盖。
+7. 每次推送后校验远端：关键文件存在、禁止路径缺席、敏感扫描为 0。
 
 ### 协作提交流程
 
@@ -624,6 +628,29 @@ adapters/
 
 ---
 
+## SOP Router Core 借鉴边界（2026-05-15）
+
+用户提供的同事方案截图显示 `codex-sop-router-core/` 采用 `graph/`、`policies/`、`leaf-skills/*/capsule.yml`、`memory/`、`evals/` 和 manifest 工具组织 Codex SOP 路由。该方案的高价值点是把路由、风险、执行、记忆和校验从纯 Markdown 规则中拆出机器可读结构。
+
+具体渐进路线见 `governance/router-core-evolution.md`；本节只保留架构边界。
+
+当前 `.agents/` 不直接切换到该方案，也不新增默认 router core。低风险吸收范围仅限：
+
+1. 新增 `templates/skill-capsule.template.yml`，为后续高频 skill 补轻量 capsule 留模板。
+2. 新增 `templates/route-eval-case.template.yml`，为后续典型任务路由回归留模板。
+3. 保持 `routing.md`、`contract.md`、`skills/`、`knowledge/`、`tools/`、`runtime/` 的现有职责不变。
+
+暂不执行的事项：
+
+- 不新增 `router-core/` 或 `graph/` 活跃目录。
+- 不把 `routing.md` 转换为 YAML 图谱。
+- 不引入 `sop-route.mjs`、`manifest.mjs` 等执行脚本。
+- 不改变 Codex / Claude Code 的入口、MCP 配置或默认路由。
+
+后续触发条件：等同事分享完整项目后，再对照实际 `graph/`、`policies/`、`tools/` 的实现质量，决定是否进入结构化路由试点。试点也应先覆盖少量高频只读任务，并通过 route eval case 验证，不直接替换现有路由表。
+
+---
+
 ## 长期演进规划
 
 ### 架构重心回归（2026-04-20 审视结论）
@@ -661,4 +688,4 @@ adapters/
 ---
 
 *创建时间：2026-04-15*
-*维护者：付春幸 + Claude Code*
+*维护者：<maintainer> + Claude Code*

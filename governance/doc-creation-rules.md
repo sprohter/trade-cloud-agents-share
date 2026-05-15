@@ -174,12 +174,12 @@ migrated_at: 2026-04-20
 
 推荐：
 
-- `[document-template.md](D:/project/trade_cloud/.agents/templates/document-template.md)`
-- `[architecture.md](D:/project/trade_cloud/.agents/governance/architecture.md)`
+- `[document-template.md](<workspace-root>/.agents/templates/document-template.md)`
+- `[architecture.md](<workspace-root>/.agents/governance/architecture.md)`
 
 不推荐：
 
-- `[document-template.md](/D:/project/trade_cloud/.agents/templates/document-template.md)`
+- `[document-template.md](/<workspace-root>/.agents/templates/document-template.md)`
 - `[某文档](final-version.md)`
 
 ### B. 索引文档规则

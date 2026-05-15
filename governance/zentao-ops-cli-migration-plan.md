@@ -41,15 +41,15 @@
 
 - 项目内禅道操作默认走 `zentao-ops`
 - skill 默认推荐入口为：
-  - `D:\project\trade_cloud\.agents\scripts\zentao\run_zentao_api.ps1`
-  - `D:\project\trade_cloud\.agents\scripts\zentao\zentao_api.py`
+  - `<workspace-root>\.agents\scripts\zentao\run_zentao_api.ps1`
+  - `<workspace-root>\.agents\scripts\zentao\zentao_api.py`
 
 截至 2026-05-08，Phase 7 已切换：
 
 - 项目内禅道操作默认走 `zentao-ops-cli`
 - 默认 CLI 入口为：
-  - `D:\project\trade_cloud\.agents\scripts\zentao_cli\run_zentao_cli.ps1`
-  - `D:\project\trade_cloud\.agents\scripts\zentao_cli\zentao_cli.py`
+  - `<workspace-root>\.agents\scripts\zentao_cli\run_zentao_cli.ps1`
+  - `<workspace-root>\.agents\scripts\zentao_cli\zentao_cli.py`
 - 旧 `zentao-ops`、旧脚本、旧 MCP 仅作为灰度期 fallback，稳定后再单独确认归档
 
 迁移前实际实现并未完全收口，仍存在三层并行：
@@ -942,7 +942,7 @@ Phase 7 切默认入口后，不应立即进入 Phase 8 废弃旧结构，应增
 - `../runtime/mcp-servers/zentao-server/index.js`
 - `routing.md` 可写为 `../routing.md`
 
-绝对路径可保留在本机 runtime 说明中，但治理方案正文建议避免依赖 `D:/project/trade_cloud`。
+绝对路径可保留在本机 runtime 说明中，但治理方案正文建议避免依赖 `<workspace-root>`。
 
 ### 16.8 最终复核结论
 

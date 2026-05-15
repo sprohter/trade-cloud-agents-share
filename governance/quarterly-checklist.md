@@ -9,7 +9,7 @@ migrated_at: 2026-04-20
 > ⚠️ 已 deprecated（2026-04-20）。内容已合并至 `governance/asset-registry.md` 季度治理体检节，本文件保留以防旧引用，不再维护。
 
 > 状态：`Trial`
-> Owner：`付春幸 + Codex`
+> Owner：`<maintainer> + Codex`
 > 角色：`治理清单`
 
 ## 1. 用途

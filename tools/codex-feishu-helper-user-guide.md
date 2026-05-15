@@ -76,21 +76,21 @@
 上游 helper 代码：
 
 ```text
-D:\project\trade_cloud\.agents\upstream\codex-feishu-helper
+<workspace-root>\.agents\upstream\codex-feishu-helper
 ```
 
 运行配置和日志：
 
 ```text
-C:\Users\epean\.feishu-codex
+<user-home>\.feishu-codex
 ```
 
 重要文件：
 
 ```text
-C:\Users\epean\.feishu-codex\config.json
-C:\Users\epean\.feishu-codex\bridge.log
-C:\Users\epean\.feishu-codex\watchdog.log
+<user-home>\.feishu-codex\config.json
+<user-home>\.feishu-codex\bridge.log
+<user-home>\.feishu-codex\watchdog.log
 ```
 
 注意：`config.json` 里有飞书应用配置，不要提交到仓库，也不要把完整内容贴给别人。
@@ -106,7 +106,7 @@ C:\Users\epean\.feishu-codex\watchdog.log
 在本机 PowerShell 里检查：
 
 ```powershell
-cd D:\project\trade_cloud\.agents\upstream\codex-feishu-helper
+cd <workspace-root>\.agents\upstream\codex-feishu-helper
 npm run doctor
 ```
 
@@ -130,15 +130,15 @@ Get-CimInstance Win32_Process |
 正常情况下守护任务会自动拉起 helper。需要手动启动时：
 
 ```powershell
-cd D:\project\trade_cloud\.agents\upstream\codex-feishu-helper
+cd <workspace-root>\.agents\upstream\codex-feishu-helper
 npm run start
 ```
 
 如果你怀疑服务卡住，推荐先看日志，再重启相关进程或等守护任务拉起。日志位置：
 
 ```text
-C:\Users\epean\.feishu-codex\bridge.log
-C:\Users\epean\.feishu-codex\watchdog.log
+<user-home>\.feishu-codex\bridge.log
+<user-home>\.feishu-codex\watchdog.log
 ```
 
 ## 出问题先看这里
@@ -187,7 +187,7 @@ Codex 没执行或 app-server 异常：
 当前迁移后的默认行为：
 
 - 只允许白名单用户触发。
-- 默认项目是 `D:\project\trade_cloud`。
+- 默认项目是 `<workspace-root>`。
 - Codex 默认可写工作区文件。
 - 不应该输出密钥。
 - 不应该执行数据库写入。

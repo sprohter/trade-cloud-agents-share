@@ -1,0 +1,61 @@
+# Route eval case template
+#
+# Purpose:
+# - Capture one representative task request and the expected routing result.
+# - Provide a small regression fixture before introducing graph/policy router logic.
+# - Keep current routing.md as the source of truth unless a future migration changes it.
+#
+# Rules:
+# - Do not include credentials, private URLs, production records, screenshots, or raw data.
+# - Prefer realistic but sanitized requests.
+# - Each eval case should be small enough to review in one screen.
+
+schema: agents.route-eval-case.v1
+status: draft
+
+case:
+  id: "<route-eval-id>"
+  title: "<short title>"
+  source: "<task|incident|manual|imported>"
+  created_at: "YYYY-MM-DD"
+
+input:
+  user_request: "<sanitized user request>"
+  attachments:
+    present: false
+    description: "<none|sanitized attachment description>"
+  context_hints:
+    - "<optional clue, such as environment or platform>"
+
+expected_route:
+  primary:
+    path: "skills/<skill-id>/"
+    reason: "<why this route should win>"
+  secondary:
+    - path: "knowledge/<domain>/<file>.md"
+      reason: "<why it should also be loaded>"
+  forbidden:
+    - path: "<route that must not be selected>"
+      reason: "<why this would be wrong>"
+
+expected_policy:
+  risk_level: low
+  confirmation_required: false
+  read_only: true
+  external_side_effects_allowed: false
+
+checks:
+  - id: "route-hit"
+    description: "Primary route matches the expected path."
+  - id: "risk-boundary"
+    description: "Risk level and confirmation behavior match expected_policy."
+  - id: "minimal-context"
+    description: "The router does not load unrelated large context by default."
+
+maintenance:
+  related_routing_lines:
+    - "routing.md:<line-or-section>"
+  related_capsules:
+    - "skills/<skill-id>/capsule.yml"
+  notes:
+    - "Update this case when routing.md changes intentionally."

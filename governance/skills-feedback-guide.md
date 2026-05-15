@@ -68,7 +68,7 @@ Use these rules when reviewing accumulated feedback:
 
 ## Storage
 
-- Template: [skills-feedback-entry-template.md](/D:/project/trade_cloud/.agents/templates/skills-feedback-entry-template.md)
-- Recommended log file: `D:\project\trade_cloud\.kiro\temp\skills-feedback-log.md`
+- Template: [skills-feedback-entry-template.md](/<workspace-root>/.agents/templates/skills-feedback-entry-template.md)
+- Recommended log file: `<workspace-root>\.kiro\temp\skills-feedback-log.md`
 
 If the log file does not exist yet, create it from the template or copy one entry at a time.

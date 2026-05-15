@@ -115,6 +115,7 @@
 | `governance/asset-registry.md` | 资产目录 |
 | `governance/migration-log.md` | 迁移日志（设计方案 + 进度） |
 | `governance/architecture.md` | 结构设计决策与演进规划 |
+| `governance/router-core-evolution.md` | 结构化路由内核演进方案，承接 SOP Router Core 思想的渐进优化路线 |
 | `claude-code/adapter.md` | Claude Code 适配说明 |
 | `claude-code/runtime-configs.md` | Claude Code 配置资产索引 |
 | `claude-code/lessons.md` | Claude Code 历史案例教训（行为偏差纠正记录） |
@@ -122,6 +123,8 @@
 | `codex/runtime-configs.md` | Codex 配置资产索引 |
 | `templates/agent-config.template.md` | 新 agent 接入模板 |
 | `templates/architecture-share-guide.md` | 阶段性架构分享输出要求 |
+| `templates/skill-capsule.template.yml` | skill 轻量 capsule 模板，用于未来结构化路由评估，不替代 SKILL.md |
+| `templates/route-eval-case.template.yml` | 路由回归用例模板，用于记录典型请求与期望路由 |
 | `share-packages/agents-share/README.md` | 面向测试组的裁剪版分享包入口 |
 | `collab/claude-cli-test-plan-collaboration-design.md` | Codex 调用 Claude Code CLI 生成测试方案，再由 Codex 审核实施的协作设计 |
 | `adapters/README.md` | ⚠️ deprecated，历史接入指南 |

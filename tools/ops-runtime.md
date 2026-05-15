@@ -30,9 +30,9 @@ SSH 执行命令：
 
 测试环境应用日志优先查测试服务器项目目录，例如：
 
-- `/mnt/epean/trade/logs/trade-lms/`
-- `/mnt/epean/trade/logs/trade-cps/`
-- `/mnt/epean/trade/logs/trade-plat-base/`
+- `<server-log-path>`
+- `<server-log-path>`
+- `<server-log-path>`
 
 生成 ELK Discover 链接：
 

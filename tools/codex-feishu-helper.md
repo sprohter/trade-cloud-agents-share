@@ -21,12 +21,12 @@
 - `codex.defaultSandboxMode`：`workspace-write`
 - `codex.defaultApprovalPolicy`：`never`
 - `feishu.taskContainerMode`：`dedicated_chat`
-- 项目种子：`trade_cloud`，路径 `D:\project\trade_cloud`
+- 项目种子：`trade_cloud`，路径 `<workspace-root>`
 
 **运行命令**：
 
 ```powershell
-cd D:\project\trade_cloud\.agents\upstream\codex-feishu-helper
+cd <workspace-root>\.agents\upstream\codex-feishu-helper
 npm run doctor
 npm run start
 ```
@@ -65,7 +65,7 @@ npm run start
 已安装 `CodexFeishuWatchdog`，用于定时检查并拉起 helper。需要手动重装时运行：
 
 ```powershell
-cd D:\project\trade_cloud\.agents\upstream\codex-feishu-helper
+cd <workspace-root>\.agents\upstream\codex-feishu-helper
 powershell -ExecutionPolicy Bypass -File .\scripts\install-watchdog.ps1
 ```
 

@@ -34,7 +34,7 @@ python .agents/scripts/data-export/export_adjust_price_rule.py
 
 **维护状态**：活跃
 
-**来源**：2026-04-16，task 调价记录导出，付春幸
+**来源**：2026-04-16，task 调价记录导出，<maintainer>
 
 ---
 
@@ -62,7 +62,7 @@ node .agents/scripts/data-export/export_shopee_invalid_watermarks.mjs
 - MySQL `trade_online.shopee_watermark`
 - MySQL `trade_online.sys_sales_plat_acct`
 - MySQL `trade_online.sys_sales_acct_config`
-- 图片 URL 探测：亿品 `https://imghz.epean.com.cn/lms/water_mark/shopeenew/only/`，梦旋 `https://mximghz.epean.com.cn/lms/water_mark/shopeenew/only/`
+- 图片 URL 探测：亿品 `https://<internal-domain>/lms/water_mark/shopeenew/only/`，梦旋 `https://<internal-domain>/lms/water_mark/shopeenew/only/`
 
 **关键字段说明**：
 - 销售主管：`sys_sales_plat_acct.sell_leader_name`
@@ -72,7 +72,7 @@ node .agents/scripts/data-export/export_shopee_invalid_watermarks.mjs
 
 **维护状态**：活跃
 
-**来源**：2026-05-09，Shopee 水印图片链接 404 排查导出，付春幸
+**来源**：2026-05-09，Shopee 水印图片链接 404 排查导出，<maintainer>
 
 ---
 
@@ -132,12 +132,14 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .agents/scripts/data-export/
 - 提交前编辑日志口径：本次提交前存在 Mongo `oper_type=24` 刊登记录编辑日志则“本次提交前无编辑日志=否”；本次提交前无编辑日志则为“是”。该口径只作为近似首次参考，不等同严格首次/二次刊登；本次提交后或本次结果后的编辑不影响本次判断，视为可能影响后续刊登。
 - 提交前编辑日志成功率主口径：用于看“不进行二次编辑时的直登成功率”，分母统一取总完成刊登数；其中“无提交前编辑日志成功率 = 无提交前编辑日志成功数 / 总完成刊登数”，“有提交前编辑日志成功率 = 有提交前编辑日志成功数 / 总完成刊登数”。
 - 提交前编辑日志成功率补充口径：Excel 中同时保留组内成功率，便于排查该组自身表现；组内成功率 = 该组成功数 / 该组完成数。
+- 摘要页展示口径：摘要中将“无提交前编辑日志/有提交前编辑日志”分别展示为“首次刊登/非首次刊登”，并保留“按提交前编辑日志维度统计”标题，避免误解为严格首次/二次刊登。
+- 每日趋势首次刊登成功率：`每日趋势` 页在整体成功率/失败率旁新增“首次刊登成功率”；首次刊登按“本次提交前无编辑日志”近似口径判断，成功率 = 首次刊登成功数 / 当日总完成刊登数，用于展示当天整体成功率中由首次刊登贡献的部分，不单独输出非首次刊登日维度。
 - 失败原因分析页结构：`失败原因Code`、`失败原因`、`处理类型`、`失败数`、`失败占比`、`处理建议`、`示例数据`、`代表性归类报错`、`父表代表报错`、`子表代表报错`、`示例刊登时间`；其中 `示例数据` 为 `{店铺名称，站点，店铺父SKU}`。
 - 失败详情字段：店铺、销售、销售主管、站点、商品父 SKU、父表失败原因、子表失败 SKU 数、代表失败子 SKU、子表失败描述、刊登时间、本次提交时间、创建时间、本次提交前无编辑日志、判断依据、置信度、提交前编辑时间、结果后已修改、最近编辑时间、修改时间、处理建议
 
 **维护状态**：活跃
 
-**来源**：2026-05-11，Amazon 刊登成功率周报自动化，付春幸
+**来源**：2026-05-11，Amazon 刊登成功率周报自动化，<maintainer>
 
 ---
 

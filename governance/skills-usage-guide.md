@@ -188,8 +188,8 @@ Kiro: [同时加载 Bug管理 和 性能分析 知识]
 - 手动激活：`#ops-runtime`
 
 **包含内容**:
-- `D:\project\trade_cloud\.agents\scripts\ops-runtime\runtime-ops.ps1`
-- `D:\project\trade_cloud\.agents\scripts\ops-runtime\references\commands.md`
+- `<workspace-root>\.agents\scripts\ops-runtime\runtime-ops.ps1`
+- `<workspace-root>\.agents\scripts\ops-runtime\references\commands.md`
 
 **适用场景**:
 - 查询生产/测试 MongoDB 操作日志
@@ -208,8 +208,8 @@ Kiro: [同时加载 Bug管理 和 性能分析 知识]
 - 手动激活：`#ops-ci`
 
 **包含内容**:
-- `D:\project\trade_cloud\.agents\scripts\ops-ci\ci-ops.ps1`
-- `D:\project\trade_cloud\.agents\scripts\ops-ci\references\commands.md`
+- `<workspace-root>\.agents\scripts\ops-ci\ci-ops.ps1`
+- `<workspace-root>\.agents\scripts\ops-ci\references\commands.md`
 
 **适用场景**:
 - 查看 Jenkins job / build
@@ -226,8 +226,8 @@ Kiro: [同时加载 Bug管理 和 性能分析 知识]
 - 手动激活：`#ops-docs`
 
 **包含内容**:
-- `D:\project\trade_cloud\.agents\scripts\ops-docs\docs-ops.ps1`
-- `D:\project\trade_cloud\.agents\scripts\ops-docs\references\commands.md`
+- `<workspace-root>\.agents\scripts\ops-docs\docs-ops.ps1`
+- `<workspace-root>\.agents\scripts\ops-docs\references\commands.md`
 
 **适用场景**:
 - 列出 Seafile 资料库
@@ -433,7 +433,7 @@ Kiro: [已激活 tools skill]
       1. 打开配置文件：.kiro/settings/mcp.json
       2. 找到 test-db 配置
       3. 确认连接信息：
-         - 主机：ob-proxy.dev.epean.cn
+         - 主机：<internal-domain>
          - 端口：2883
          - 数据库：ep_trade_test
       4. 测试连接：查询店铺列表
@@ -454,7 +454,7 @@ Kiro: [已激活 infrastructure skill]
       根据环境映射配置：
       
       UAT环境：
-      - 数据库：prod-db-epean（⚠️ 使用生产库）
+      - 数据库：prod-db-primary（⚠️ 使用生产库）
       - SSH日志：uat-ssh
       - ELK日志：all-uat-log-*
       - 部署分支：master（每天自动部署）
@@ -516,7 +516,7 @@ Kiro: [已激活 infrastructure skill]
 ---
 
 **创建时间**: 2026-02-26  
-**维护者**: Kiro AI + 付春幸  
+**维护者**: Kiro AI + <maintainer>  
 **版本**: 1.0  
 **状态**: ✅ 完成
 
