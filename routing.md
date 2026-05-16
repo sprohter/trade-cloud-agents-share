@@ -28,6 +28,7 @@
 | 接口超时、服务卡住、请求排队、blocked线程、线程堆积、JVM线程、Tomcat线程、RabbitMQ发送阻塞、BatchingRabbitTemplate、Channel创建卡住、Grafana监控 | `skills/workflows/problem-analysis.md` + `skills/performance/` + `skills/ops-runtime/` |
 | 业务数据导出、导出 Excel、给业务查数据 | `skills/sql-diagnosis/` + `tools/data-export.md` |
 | 钉钉、DWS、AI表格、日历、通讯录、群聊、单聊、机器人发消息、收消息、查消息、待办、审批、考勤、日志、DING消息、工作台 | `skills/dws/` |
+| Apifox、OpenAPI、接口契约、接口测试、接口文档、前后端联调、请求参数、响应字段、用 Apifox 查接口、从 Apifox 看接口 | `skills/apifox-docs/` + `tools/apifox-docs.md` + `knowledge/infrastructure/apifox-contract-source.md` |
 | 创建Bug、创建 bug、提bug、提 Bug、提缺陷、创建缺陷、记录bug、记录 Bug、缺陷描述、重现步骤、测试备注、表格描述、缺陷流转、解决bug、关闭bug、激活bug | `skills/bug-management/` + `knowledge/testing/bug-writing-style-guide.md` + `skills/zentao-ops-cli/` |
 | 禅道、zentao、task-view、bug-view、任务详情、缺陷详情、禅道任务、禅道缺陷 | `skills/zentao-ops-cli/` |
 | 禅道贴图、贴图到重现步骤、截图放到重现步骤、图片放正文、粘贴截图、内嵌图片、file-read | `skills/zentao-ops-cli/` + `knowledge/testing/bug-writing-style-guide.md` |
@@ -49,7 +50,7 @@
 | 参考文档、规范查询 | `skills/reference/` |
 | 日志链路追踪 | `skills/log-trace/` |
 | 生产应用原始日志 / applog 中转机查询 | `skills/ep-log-search/` |
-| Apifox 接口文档 | `skills/apifox-docs/` |
+| Apifox 接口文档、OpenAPI、接口契约、接口测试、前后端联调接口说明 | `skills/apifox-docs/` + `tools/apifox-docs.md` + `knowledge/infrastructure/apifox-contract-source.md` |
 | 钉钉产品操作（AI表格/日历/通讯录/群聊机器人/待办/审批/考勤/日志/DING/工作台） | `skills/dws/` |
 | 代码库结构定位 | `skills/codebase-map/` |
 | 启动失败诊断 | `skills/startup-failure-diagnosis/` |
@@ -94,6 +95,7 @@
 | 业务口径、字段语义、平台规则 | `knowledge/business/`（目录入口） |
 | 开发习惯、开发规则、开发收尾、临时产物、临时脚本、后台脚本、计划任务、开机启动、watchdog、bridge/server、常驻脚本、定时同步脚本、自动化脚本、无窗口、隐藏窗口、黑框、弹框、跨平台脚本、临时 worktree、临时分支、提交现场清理、默认代想、开发卫生 | `knowledge/development/temporary-artifact-hygiene.md` + `skills/development/cross-platform-development.md` |
 | 本地环境、工具链、MCP 配置 | `knowledge/infrastructure/`（目录入口） |
+| Apifox 接入 Codex/Claude、Apifox 公司账号配置、Apifox MCP token、Apifox 本地缓存、Apifox 和 skill/MCP 关系 | `knowledge/infrastructure/apifox-contract-source.md` + `skills/apifox-docs/` |
 | Seafile 文档查找 | `knowledge/infrastructure/seafile-local-lookup-guide.md` |
 | 密钥与凭证治理 | `knowledge/infrastructure/secrets-governance-plan.md` |
 | Grafana、Prometheus、生产监控、可观测、服务器监控、JVM监控、RabbitMQ监控、Redis监控、OceanBase监控 | `knowledge/infrastructure/grafana-ops-observability-card.md` + `skills/ops-runtime/` + `skills/performance/` |

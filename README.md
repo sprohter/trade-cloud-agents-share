@@ -71,6 +71,7 @@
 ├── upstream/               ← 上游来源（本地，gitignored）
 │   └── epean-skills/
 ├── collab/                 ← 多 agent 协作协议
+├── case-studies/           ← 任务级案例与事故/排查档案
 └── archive/                ← 归档
 ```
 
@@ -85,6 +86,19 @@
 | `governance/` | 框架自身的管理规则 | 业务内容 |
 | `adapters/` | agent 接入说明、模板、运行时配置资产索引 | 实际带密钥的配置文件内容 |
 | `archive/` | 有时间戳的一次性记录 | 需要长期维护的内容 |
+
+### M1-M4 记忆分层
+
+新增或维护 agent 记忆类内容时，先按 `governance/sedimentation.md` §3.1 判断主归属：
+
+| 记忆层 | 用途 | 当前主要位置 |
+|--------|------|--------------|
+| M1：索引记忆 | 快速知道该读哪里 | `README.md`、`routing.md`、`knowledge/*/README.md`、`governance/asset-registry.md` |
+| M2：事实记忆 | 稳定业务事实、字段口径、环境口径、团队规则 | `knowledge/business/`、`knowledge/infrastructure/`、规则卡 |
+| M3：流程记忆 | 可重复执行的 SOP、runbook、验证流程、工具步骤 | `skills/`、`knowledge/testing/*runbook*`、`tools/` |
+| M4：归档记忆 | 历史案例、事故现场、过期方案、完整证据 | `case-studies/`、`archive/`、`governance/migration-log.md` |
+
+当前不新增活跃 `memory/` 目录；M1-M4 只作为写入和读取口径，避免索引、事实、流程、归档混写。
 
 ---
 
@@ -136,7 +150,7 @@
 | 分类 | 已同步 skill |
 |------|-------------|
 | Core | `bug-management`、`infrastructure`、`tools`、`ops-runtime`、`workflows` |
-| Scenario | `performance`、`development`、`ops-ci`、`ops-docs`、`startup-failure-diagnosis`、`sql-diagnosis`、`log-trace`、`codebase-map`、`platform-integration`、`release-regression`、`business`、`data-analysis`、`apifox-docs`、`zentao-ops`、`dws` |
+| Scenario | `performance`、`development`、`ops-ci`、`ops-docs`、`startup-failure-diagnosis`、`sql-diagnosis`、`log-trace`、`ep-log-search`、`codebase-map`、`platform-integration`、`release-regression`、`business`、`data-analysis`、`apifox-docs`、`zentao-ops`、`zentao-ops-cli`、`dws` |
 | Archive | `reference`、`business-overview`、`project-context`、`dingtalk-aitable-views` |
 
 **权威来源**为 `.agents/skills/`（2026-04-16 起，阶段十一完成后 `.kiro/skills/` 已移入 `_cleanup`）。

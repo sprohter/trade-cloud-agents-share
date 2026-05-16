@@ -42,7 +42,40 @@
 .\.agents\scripts\trade.ps1 business find --query "毛利率"
 .\.agents\scripts\trade.ps1 business find --key gross-profit-rate
 .\.agents\scripts\trade.ps1 business find --query "Shopee刊登" --search-code
+.\.agents\scripts\trade.ps1 apifox summary
+.\.agents\scripts\trade.ps1 apifox find --query shopee --top 5
 .\.agents\scripts\trade.ps1 handoff create --task 16035
+```
+
+**维护状态**：试运行
+
+---
+
+## apifox/apifox-contract.ps1 / apifox-contract.js
+
+**用途**：读取本机 `apifox-mcp-server` 导出的 OpenAPI 缓存，输出脱敏接口契约摘要。`apifox-contract.js` 是大 JSON 解析核心，`apifox-contract.ps1` 是 Windows/PowerShell 入口包装。脚本只读，不读取 Apifox Cookie、Local Storage、Session Storage、IndexedDB、请求历史、环境变量、全局变量、脚本或 access token。默认 OA 项目 `3913351`，输出包含 source path、mtime、project id 与 stale warning。
+
+**调用方式**：
+```powershell
+.\.agents\scripts\apifox\apifox-contract.ps1 summary
+.\.agents\scripts\apifox\apifox-contract.ps1 summary -Json
+.\.agents\scripts\apifox\apifox-contract.ps1 find -Query shopee -Top 5
+.\.agents\scripts\apifox\apifox-contract.ps1 find -Path /msgCalPriceFormula -Method POST -Json
+.\.agents\scripts\trade.ps1 apifox find --query shopee --top 5 --json
+node .\.agents\scripts\apifox\apifox-contract.js summary --json
+```
+
+**维护状态**：试运行
+
+---
+
+## apifox/run-apifox-mcp.js
+
+**用途**：Apifox 官方 MCP server 的本地启动包装。读取 `.agents/runtime/local-secrets/mcp.env` 中的 `MCP_APIFOX__APIFOX_ACCESS_TOKEN` 和 `MCP_APIFOX__APIFOX_OA_PROJECT_ID`，启动 `apifox-mcp-server@latest` 时映射为官方需要的 `APIFOX_ACCESS_TOKEN`。不打印 token，不读取 Apifox 客户端运行态。
+
+**调用方式（一般由 MCP 配置启动，不手工直跑）**：
+```powershell
+node .\.agents\scripts\apifox\run-apifox-mcp.js
 ```
 
 **维护状态**：试运行

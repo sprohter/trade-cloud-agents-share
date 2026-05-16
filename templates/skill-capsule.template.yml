@@ -18,6 +18,8 @@ skill:
   display_name: "<human-readable-name>"
   source_path: "skills/<skill-id>/SKILL.md"
   owner_layer: "skills"
+  memory_layer: "M3"
+  memory_layer_reason: "Skill capsules summarize reusable execution procedures and routing metadata."
 
 routing:
   summary: "<one sentence describing when to use this skill>"
