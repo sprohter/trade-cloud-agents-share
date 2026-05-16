@@ -51,6 +51,11 @@
 .\.agents\scripts\trade.ps1 apifox summary --json
 .\.agents\scripts\trade.ps1 apifox find --query shopee --top 5
 .\.agents\scripts\trade.ps1 apifox find --path /msgCalPriceFormula --method POST --json
+.\.agents\scripts\trade.ps1 apifox projects
+.\.agents\scripts\trade.ps1 apifox project --project-id 3913351
+.\.agents\scripts\trade.ps1 apifox envs --project-id 3913351
+.\.agents\scripts\trade.ps1 apifox tree --project-id 3913351 --depth 2
+.\.agents\scripts\trade.ps1 apifox tree --query shopee --top 5 --json
 
 .\.agents\scripts\trade.ps1 handoff create
 .\.agents\scripts\trade.ps1 handoff create --task 16035
@@ -109,7 +114,13 @@ These are optional compatibility extensions. Existing required fields stay the s
 
 `business find` is a local read-only business context lookup. It reads lightweight cards under `.agents/knowledge/business/context-map/` first, verifies referenced file presence/freshness metadata for matched cards, and only falls back to compact `rg` code candidates when no card matches or `--search-code` is passed. Full JSON reports are written under `.agents/runtime/state/business-context/`. It does not modify business code, business data, shared state, or external systems, and it redacts lines that look like secrets.
 
-`apifox` is a local read-only Apifox contract lookup. It wraps `.agents/scripts/apifox/apifox-contract.ps1` and reads only sanitized OpenAPI cache content such as method, path, summary, operationId, tags, request/response schema references, source path, mtime, project id, and stale warning. It does not read Apifox Cookie, Local Storage, Session Storage, IndexedDB, request history, environment variables, global variables, scripts, access tokens, or sensitive request examples. Prefer live Apifox MCP when registered; use this command as the deterministic local fallback.
+`apifox` is a local read-only Apifox lookup surface:
+
+- `summary/find` wrap `.agents/scripts/apifox/apifox-contract.ps1` and read only sanitized OpenAPI cache content such as method, path, summary, operationId, tags, request/response schema references, source path, mtime, project id, and stale warning.
+- `projects/project/envs/env` wrap `.agents/scripts/apifox/apifox-meta.js`, which calls official `apifox-cli` with the local private token from `.agents/runtime/local-secrets/mcp.env`. It does not run `apifox login` or persist the token.
+- `tree` reads only `<APPDATA>/apifox/data-storage-apiDetailTreeList.json` for sanitized UI navigation fields: folder/API/case names, ids, method, path, tree path, counts, source, and mtime.
+
+It does not read Apifox Cookie, Local Storage, Session Storage, IndexedDB, request history, environment variables, global variables, scripts, access tokens, or sensitive request examples. Prefer live Apifox MCP for contract details when registered; use this command for deterministic local fallback and UI metadata lookup.
 
 `handoff create` writes a local draft under `.agents/runtime/state/handoff/`. It may reuse the latest cached `doctor`, `framework check`, `verify framework-integrity`, and `evidence summary` JSON files under `.agents/runtime/state/trade-cli/`, and will generate missing read-only cache inputs on demand. It does not update collab session state.
 
@@ -131,7 +142,7 @@ These are optional compatibility extensions. Existing required fields stay the s
 - Treat `collab` as visibility/readiness only; do not expose session state mutations such as init/request/respond/complete/fail.
 - Treat `audit` as metadata-only diagnostics; do not read session message bodies or secret-bearing config files.
 - Treat `business find` as navigation only; cards are not business truth and compact code hits are starting points, not conclusions.
-- Treat `apifox` as contract lookup only; cached OpenAPI is not proof that the running service is current.
+- Treat `apifox summary/find` as contract lookup only; cached OpenAPI is not proof that the running service is current. Treat `apifox tree` as UI navigation only; cached UI tree mtime must be considered before using it to infer latest project structure.
 - Treat `handoff` as local-draft-only; keep outputs under `.agents/runtime/state/` and never mutate session state.
 - Never print passwords, tokens, full database connection strings, or request payloads containing secrets.
 - Any command that writes to external systems must require explicit confirmation at the caller/workflow layer.

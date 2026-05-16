@@ -44,6 +44,9 @@
 .\.agents\scripts\trade.ps1 business find --query "Shopee刊登" --search-code
 .\.agents\scripts\trade.ps1 apifox summary
 .\.agents\scripts\trade.ps1 apifox find --query shopee --top 5
+.\.agents\scripts\trade.ps1 apifox projects
+.\.agents\scripts\trade.ps1 apifox envs --project-id 3913351
+.\.agents\scripts\trade.ps1 apifox tree --query shopee --top 5
 .\.agents\scripts\trade.ps1 handoff create --task 16035
 ```
 
@@ -63,6 +66,26 @@
 .\.agents\scripts\apifox\apifox-contract.ps1 find -Path /msgCalPriceFormula -Method POST -Json
 .\.agents\scripts\trade.ps1 apifox find --query shopee --top 5 --json
 node .\.agents\scripts\apifox\apifox-contract.js summary --json
+```
+
+**维护状态**：试运行
+
+---
+
+## apifox/apifox-meta.js
+
+**用途**：读取 Apifox UI 元数据。项目、项目详情、环境、环境详情通过官方 `apifox-cli` + 本机私有 token 查询；左侧接口目录树只读解析 `<APPDATA>/apifox/data-storage-apiDetailTreeList.json`，只输出目录/API 名称、id、method、path、树路径、计数和 mtime。脚本不执行 `apifox login`，不持久化 token，不读取 Apifox Cookie、Local Storage、Session Storage、IndexedDB、请求历史、环境变量、全局变量或脚本。
+
+**调用方式**：
+```powershell
+node .\.agents\scripts\apifox\apifox-meta.js projects
+node .\.agents\scripts\apifox\apifox-meta.js project --project-id 3913351 --json
+node .\.agents\scripts\apifox\apifox-meta.js envs --project-id 3913351
+node .\.agents\scripts\apifox\apifox-meta.js tree --project-id 3913351 --depth 2
+node .\.agents\scripts\apifox\apifox-meta.js tree --query shopee --top 5 --json
+.\.agents\scripts\trade.ps1 apifox projects
+.\.agents\scripts\trade.ps1 apifox envs --project-id 3913351
+.\.agents\scripts\trade.ps1 apifox tree --query shopee --top 5
 ```
 
 **维护状态**：试运行
