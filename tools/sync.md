@@ -31,7 +31,7 @@
 1. `trade-cloud-agents`：个人 Private 备份库，沿用安全镜像边界；日常增量，周日全量。
 2. `trade-cloud-agents-share`：脱敏架构分享库，只导出白名单内容并阻断敏感命中。
 
-自动化 `daily-agents-safe-mirror-sync` 每天 05:00 调用该统一入口。脚本不写入 token，不把 token 拼进 remote URL；若遇到疑似敏感内容、推送冲突、远端不可达或需要强推 / 删历史 / 轮换凭证，会停止并报告。
+自动化 `daily-agents-safe-mirror-sync` 每天 05:00 调用该统一入口。脚本不写入 token，不把 token 拼进 remote URL；所有内部 Git 调用默认先清空继承到的 `credential.helper`，Windows 下再显式使用 Git Credential Manager，避免项目本地 `.git/config` 的 `credential.helper store` 把 PAT 写回 `%USERPROFILE%\.git-credentials`。若遇到疑似敏感内容、推送冲突、远端不可达或需要强推 / 删历史 / 轮换凭证，会停止并报告。
 
 ## OneDrive 备份用法
 
@@ -119,6 +119,7 @@
 - `-FullSyncCadenceDays`：自动全量校验周期；默认 `7`，设为 `0` 可关闭周期性全量
 - `-WeeklyFullDay`：每周自动全量日；默认 `Sunday`，设为空可关闭按周固定全量
 - `-GitHttpSslBackend`：覆盖 git HTTPS TLS backend；Windows 默认使用 `openssl`，传 `default` 可回退 Git 自身配置
+- `-GitCredentialHelper`：覆盖内部 Git 调用的 credential helper；Windows 默认使用 `manager`，并且会先清空继承 helper；传 `default` 表示禁用脚本层 helper 注入但仍清空继承 helper
 - `-SkipAnonymousPrivacyCheck`：仅在人工确认远端可见性后使用；自动化默认不要跳过
 
 ## GitHub 架构分享仓库

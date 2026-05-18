@@ -470,7 +470,7 @@ adapters/
 2. 按安全导出边界复制文件，不直接推送本地 `.agents/.git` 历史。
 3. 日常默认走增量快路径：基于 GitHub 远端 `main` 的最新工作树比较当前 sanitized export，只复制 / 删除 changed paths，并只对增量文件执行敏感扫描。
 4. 周期性或高风险场景走全量校验路径：默认周日执行全量；边界规则变更、缺少成功基线、超过全量兜底周期或人工强制时，也对完整 sanitized export 执行敏感扫描，再与远端工作树做全量 overlay。
-5. 推送时使用临时认证 header 或安全 credential helper；不要把 token 写入 remote URL、文档或脚本。
+5. 推送时使用临时认证 header 或安全 credential helper；不要把 token 写入 remote URL、文档或脚本。同步脚本的内部 Git 调用必须先清空继承到的 `credential.helper`，再显式选择安全 helper（Windows 默认 Git Credential Manager），避免本地仓库残留的 `credential.helper store` 把 token 写入 `%USERPROFILE%/.git-credentials`。
 6. 推送后通过 GitHub API 或 shallow clone 校验远端：仓库仍为 Private、目标提交 SHA 正确、预期文件存在、禁止目录缺席、敏感扫描通过。
 
 ### 默认分支与合并模式
