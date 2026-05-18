@@ -1,6 +1,6 @@
 # apifox-docs - Apifox contract and metadata lookup
 
-**Purpose**: read Apifox interface contracts through the official MCP server when available, read project/environment metadata through official `apifox-cli`, and use local sanitized caches only as read-only fallbacks.
+**Purpose**: read Apifox interface contracts through the official MCP server when available, read project/environment metadata through the official Apifox API, and use local sanitized caches only as read-only fallbacks.
 
 **Primary script paths**:
 
@@ -41,7 +41,7 @@ This tool is read-only. It only reads sanitized OpenAPI cache content:
 
 It must not read or print Apifox Cookie, Local Storage, Session Storage, IndexedDB, request history, Apifox environment variables, global variables, scripts, access tokens, or real request examples containing sensitive data.
 
-`projects`, `project`, `envs`, and `env` call official `apifox-cli` with the local private token from `.agents/runtime/local-secrets/mcp.env`. They do not call `apifox login` and do not persist the token to Apifox CLI config.
+`projects`, `project`, `envs`, and `env` call the official Apifox API with the local private token from `.agents/runtime/local-secrets/mcp.env`. The token is sent as an Authorization header only. The script does not call `apifox login` and does not persist the token to Apifox CLI config.
 
 `tree` reads only `<APPDATA>/apifox/data-storage-apiDetailTreeList.json`, and only prints sanitized navigation fields:
 

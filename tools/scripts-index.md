@@ -74,7 +74,7 @@ node .\.agents\scripts\apifox\apifox-contract.js summary --json
 
 ## apifox/apifox-meta.js
 
-**用途**：读取 Apifox UI 元数据。项目、项目详情、环境、环境详情通过官方 `apifox-cli` + 本机私有 token 查询；左侧接口目录树只读解析 `<APPDATA>/apifox/data-storage-apiDetailTreeList.json`，只输出目录/API 名称、id、method、path、树路径、计数和 mtime。脚本不执行 `apifox login`，不持久化 token，不读取 Apifox Cookie、Local Storage、Session Storage、IndexedDB、请求历史、环境变量、全局变量或脚本。
+**用途**：读取 Apifox UI 元数据。项目、项目详情、环境、环境详情通过 official Apifox API + 本机私有 token 查询，token 只作为 Authorization header 发送；左侧接口目录树只读解析 `<APPDATA>/apifox/data-storage-apiDetailTreeList.json`，只输出目录/API 名称、id、method、path、树路径、计数和 mtime。脚本不执行 `apifox login`，不持久化 token，不读取 Apifox Cookie、Local Storage、Session Storage、IndexedDB、请求历史、环境变量、全局变量或脚本。
 
 **调用方式**：
 ```powershell

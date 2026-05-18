@@ -15,7 +15,7 @@
 | ops-ci | Jenkins / XXL-Job 共享脚本入口 | `ops-ci.md` |
 | ops-docs | Seafile / 共享文档共享脚本入口 | `ops-docs.md` |
 | runtime-probes | Playwright UI 探针脚本（毛利率、调价等页面） | `runtime-probes.md` |
-| apifox-docs | Apifox 接口契约读取：优先 MCP，兜底本地 OpenAPI 缓存 | `apifox-docs.md` |
+| apifox-docs | Apifox 接口契约与 UI 元数据读取：MCP / official API / 本地缓存兜底 | `apifox-docs.md` |
 | mercadolibre-playwright | MercadoLibre 站点中文化 Playwright 回归脚本 | `mercadolibre-playwright.md` |
 | autopull | 自动 git pull，保持本地代码最新 | `autopull.md` |
 | setup | CCH 配置、模型切换、环境初始化 | `setup.md` |

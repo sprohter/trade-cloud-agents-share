@@ -117,7 +117,7 @@ These are optional compatibility extensions. Existing required fields stay the s
 `apifox` is a local read-only Apifox lookup surface:
 
 - `summary/find` wrap `.agents/scripts/apifox/apifox-contract.ps1` and read only sanitized OpenAPI cache content such as method, path, summary, operationId, tags, request/response schema references, source path, mtime, project id, and stale warning.
-- `projects/project/envs/env` wrap `.agents/scripts/apifox/apifox-meta.js`, which calls official `apifox-cli` with the local private token from `.agents/runtime/local-secrets/mcp.env`. It does not run `apifox login` or persist the token.
+- `projects/project/envs/env` wrap `.agents/scripts/apifox/apifox-meta.js`, which calls the official Apifox API with the local private token from `.agents/runtime/local-secrets/mcp.env`. The token is sent as an Authorization header only; the script does not run `apifox login` or persist the token.
 - `tree` reads only `<APPDATA>/apifox/data-storage-apiDetailTreeList.json` for sanitized UI navigation fields: folder/API/case names, ids, method, path, tree path, counts, source, and mtime.
 
 It does not read Apifox Cookie, Local Storage, Session Storage, IndexedDB, request history, environment variables, global variables, scripts, access tokens, or sensitive request examples. Prefer live Apifox MCP for contract details when registered; use this command for deterministic local fallback and UI metadata lookup.
